@@ -13,4 +13,8 @@ export class TasksController {
     return this.tasksService.create(createTaskDto);
   }
   
+  @Get()
+  findAll(): Promise<Task[]> {
+    return this.tasksService.findAll();
+  }
 }

@@ -1,4 +1,3 @@
-// src/tasks/tasks.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -16,5 +15,9 @@ export class TasksService {
   create(createTaskDto: CreateTaskDto): Promise<Task> {
     const task = this.tasksRepository.create(createTaskDto);
     return this.tasksRepository.save(task);
+  }
+
+  findAll(): Promise<Task[]> {
+    return this.tasksRepository.find();
   }
 }
