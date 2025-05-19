@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Task {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   title: string;
@@ -11,6 +11,14 @@ export class Task {
   @Column()
   description: string;
 
-  @Column({ type: 'enum', enum: ['OPEN', 'IN_PROGRESS', 'DONE'], default: 'OPEN' })
-  status: 'OPEN' | 'IN_PROGRESS' | 'DONE';
+  @Column({
+    default: false
+  })
+  completed: boolean;
+
+  @Column({ 
+    type: 'timestamp', 
+    default: () => 'CURRENT_TIMESTAMP' 
+  })
+  createdAt: Date;
 }
