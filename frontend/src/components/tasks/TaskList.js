@@ -3,6 +3,7 @@ import { Box, Typography, CircularProgress, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import TaskItem from './TaskItem';
 import TaskForm from './TaskForm';
+import TaskFilter from './TaskFilter';
 import { getAllTasks, createTask, updateTask, deleteTask } from '../../services/tasks.service';
 
 const TaskList = () => {
@@ -11,6 +12,7 @@ const TaskList = () => {
   const [error, setError] = useState('');
   const [openForm, setOpenForm] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
+  const [filter, setFilter] = useState('all');
 
   const fetchTasks = async () => {
     try {
@@ -73,6 +75,12 @@ const TaskList = () => {
     setCurrentTask(null);
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'completed') return task.completed;
+    if (filter === 'pending') return !task.completed;
+    return true;
+  });
+
   if (loading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
@@ -83,19 +91,20 @@ const TaskList = () => {
 
   return (
     <Box sx={{ py: 4, px: 2 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        My Tasks
-      </Typography>
-
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h4" component="h1">
+            My Tasks
+        </Typography>
+        <TaskFilter filter={filter} setFilter={setFilter} />
+      </Box>
       {error && <Typography color="error">{error}</Typography>}
-
-      {tasks.length === 0 ? (
+      {filteredTasks.length === 0 ? (
         <Typography variant="body1" sx={{ mt: 2 }}>
           No tasks yet. Add a new task to get started!
         </Typography>
       ) : (
         <Box sx={{ mt: 2 }}>
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <TaskItem
               key={task.id}
               task={task}
@@ -105,7 +114,6 @@ const TaskList = () => {
           ))}
         </Box>
       )}
-
       <Fab
         color="primary"
         aria-label="add"
@@ -114,7 +122,6 @@ const TaskList = () => {
       >
         <AddIcon />
       </Fab>
-
       <TaskForm
         open={openForm}
         onClose={handleFormClose}

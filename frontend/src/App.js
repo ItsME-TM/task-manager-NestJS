@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 //import TestApi from './testApi';
 import TaskList from './components/tasks/TaskList';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -43,6 +44,7 @@ function AppContent() {
           <Route path="/" element={<Navigate to="/tasks" />} />
         </Routes>
       </Container>
+      <Footer />
     </>
   );
 }
