@@ -28,5 +28,9 @@ export class TasksController {
     return this.tasksService.update(+id, updateTaskDto);
   }
 
-  
+  @Delete(':id')
+  remove(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.remove(+id);
+  }
+
 }
