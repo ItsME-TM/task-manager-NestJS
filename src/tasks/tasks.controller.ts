@@ -17,4 +17,9 @@ export class TasksController {
   findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id : string) : Promise<Task> {
+    return this.tasksService.findOne(+id);
+  }
 }

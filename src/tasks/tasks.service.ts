@@ -20,4 +20,14 @@ export class TasksService {
   findAll(): Promise<Task[]> {
     return this.tasksRepository.find();
   }
+
+  async findOne(id: number) : Promise<Task> {
+    const task = await this.tasksRepository.findOne({
+      where: { id }
+    });
+    if (!task){
+      throw new NotFoundException(`Task with ID ${id} not found`);
+    }
+    return task;
+  }
 }
