@@ -5,6 +5,7 @@ import { Task } from './tasks/task.entity';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users,module';
 import { AuthModule } from './auth/auth.module';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Task],
+      entities: [Task, User],
       synchronize: true,
     }),
     TasksModule,

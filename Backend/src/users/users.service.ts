@@ -11,14 +11,14 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    const user = await this.usersRepository.findOne({ where: { username } });
-    return user === null ? undefined : user;
+  async create(username: string, password: string): Promise<User> {
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+    const user = this.usersRepository.create({ username, password: hashedPassword });
+    return this.usersRepository.save(user); // Save to database
   }
 
-  async create(username: string, password: string): Promise<User> {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = this.usersRepository.create({ username, password: hashedPassword });
-    return this.usersRepository.save(user);
+  async findOne(username: string): Promise<User | undefined> {
+    const user = await this.usersRepository.findOne({ where: { username } }); // Find user by username
+    return user ?? undefined;
   }
 }

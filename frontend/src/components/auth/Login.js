@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, TextField, Typography, Container, Paper, Alert } from '@mui/material';
 import { AuthContext } from '../../contexts/AuthContext';
-
+import api from '../../services/api';
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
@@ -16,17 +16,26 @@ const Login = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
-    const handleLogin = (values) => {
-        if (values.username === 'user' && values.password === 'password'){
-            login(values.username, 'fake-jwt-token');
-            setError('');
-            navigate('/tasks');
-        } else {
-            setError('Invalid username or password');
+    const handleLogin = async (values, { setSubmitting }) => {
+    const { username, password } = values;
+
+    try {
+        const response = await api.post('/auth/login', { username, password });
+        const token = response.data.access_token;
+
+        localStorage.setItem('token', token);
+        login(username, token); 
+        setError('');
+        navigate('/tasks');
+        } catch (err) {
+            setError('Invalid credentials');
+        } finally {
+            setSubmitting(false);
         }
     };
+
     return (
-        <Container component="main" maxWidth="xs" sx={{ borderRadius: 2 }}>
+        <Container component="main" maxWidth="xs">
             <Paper elevation={3} sx={{ p: 4, mt: 8 }}>
                 <Typography component="h1" variant="h5" align="center">
                     Task Manager Login

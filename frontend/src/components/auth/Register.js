@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, TextField, Typography, Container, Paper, Alert } from '@mui/material';
 import { AuthContext } from '../../contexts/AuthContext';
+import api from '../../services/api'; // Make sure this path is correct
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
@@ -22,13 +23,28 @@ const Register = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleRegister = (values) => {
-    if (values.username === 'demo') {
-      setError('Username already taken');
-    } else {
-      login(values.username, 'fake-jwt-token');
+  const handleRegister = async (values, { setSubmitting }) => {
+    try {
+      const response = await api.post('/auth/signup', {
+        username: values.username,
+        password: values.password,
+      });
+
+      const { access_token } = response.data;
+
+      localStorage.setItem('token', access_token);
+      localStorage.setItem('username', values.username);
+
+      login(values.username, access_token);
       setError('');
       navigate('/tasks');
+    } catch (err) {
+      const message =
+        err.response?.data?.message ||
+        'Registration failed. Please try again.';
+      setError(message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
