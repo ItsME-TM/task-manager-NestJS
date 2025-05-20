@@ -4,11 +4,9 @@ import { CssBaseline, Container, Typography } from '@mui/material';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import TestApi from './testApi';
+//import TestApi from './testApi';
+import TaskList from './components/tasks/TaskList';
 
-const Tasks = () => {
-  return <Typography variant="h4">Tasks Page (Placeholder)</Typography>;
-};
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useContext(AuthContext);
@@ -36,7 +34,7 @@ function AppContent() {
             path="/tasks"
             element={
               <ProtectedRoute>
-                <Tasks />
+                <TaskList />
               </ProtectedRoute>
             }
           />
@@ -52,7 +50,6 @@ function App() {
     <Router>
       <AuthProvider>
         <AppContent />
-        <TestApi />
       </AuthProvider>
     </Router>
   );

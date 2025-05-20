@@ -1,3 +1,4 @@
+/*
 import React, { useEffect } from 'react';
 import { getAllTasks } from './services/tasks.service';
 
@@ -18,3 +19,4 @@ const TestApi = () => {
 };
 
 export default TestApi;
+*/
