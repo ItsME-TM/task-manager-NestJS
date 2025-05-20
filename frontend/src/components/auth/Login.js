@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, TextField, Typography, Container, Paper, Alert } from '@mui/material';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 const LoginSchema = Yup.object().shape({
@@ -13,14 +14,14 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     const handleLogin = (values) => {
         if (values.username === 'user' && values.password === 'password'){
-            localStorage.setItem('token', 'fake-jwt-token');
-            localStorage.setItem('username', values.username);
+            login(values.username, 'fake-jwt-token');
             setError('');
             navigate('/tasks');
-        }else{
+        } else {
             setError('Invalid username or password');
         }
     };
@@ -34,7 +35,7 @@ const Login = () => {
                 <Formik
                     initialValues={{ username: '', password: ''}}
                     validationSchema={LoginSchema}
-                    //onSubmit = {handleLogin}
+                    onSubmit = {handleLogin}
                 >
                     {({errors, touched, isSubmitting}) => (
                         <Form>

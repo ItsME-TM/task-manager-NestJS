@@ -1,22 +1,56 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { CssBaseline, Container, Typography } from '@mui/material';
+import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import Login from './components/auth/Login';
-import { Container, Typography } from '@mui/material';
+
 
 const Tasks = () => {
   return <Typography variant="h4">Tasks Page (Placeholder)</Typography>;
 };
 
-function App() {
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+};
+
+function AppContent() {
   return (
-    <Router>
+    <>
+      <CssBaseline />
       <Container maxWidth="md">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/" element={<Tasks />} />
+          <Route
+            path="/tasks"
+            element={
+              <ProtectedRoute>
+                <Tasks />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<Navigate to="/tasks" />} />
         </Routes>
       </Container>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </Router>
   );
 }
