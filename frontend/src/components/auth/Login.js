@@ -71,14 +71,6 @@ const Login = () => {
                                 >
                                     Sign In
                                 </Button>
-                                <Typography
-                                    variant="body2"
-                                    align="center"
-                                    sx={{ mt: 2, cursor: 'pointer', color: 'primary.main', textDecoration: 'underline' }}
-                                    onClick={() => navigate('/register')}
-                                >
-                                    Don't have an account? Sign up here
-                                </Typography>
                             </Box>
                         </Form>
                     )}

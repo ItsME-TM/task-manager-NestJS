@@ -6,6 +6,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 //import TestApi from './testApi';
 import TaskList from './components/tasks/TaskList';
+import Header from './components/layout/Header';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -26,6 +27,7 @@ function AppContent() {
   return (
     <>
       <CssBaseline />
+      <Header />
       <Container maxWidth="md">
         <Routes>
           <Route path="/login" element={<Login />} />
