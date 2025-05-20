@@ -4,6 +4,7 @@ import { CssBaseline, Container, Typography } from '@mui/material';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import TestApi from './testApi';
 
 const Tasks = () => {
   return <Typography variant="h4">Tasks Page (Placeholder)</Typography>;
@@ -51,6 +52,7 @@ function App() {
     <Router>
       <AuthProvider>
         <AppContent />
+        <TestApi />
       </AuthProvider>
     </Router>
   );
