@@ -30,4 +30,12 @@ export class TasksService {
     }
     return task;
   }
+
+  async update (id: number, updateTaskDto: UpdateTaskDto) : Promise<Task> {
+    const task = await this.findOne(id);
+    Object.assign(task, updateTaskDto);
+    return this.tasksRepository.save(task);
+  }
+
+  
 }

@@ -22,4 +22,11 @@ export class TasksController {
   findOne(@Param('id') id : string) : Promise<Task> {
     return this.tasksService.findOne(+id);
   }
+
+  @Put(':id')
+  update(@Param('id') id : string, @Body() updateTaskDto: UpdateTaskDto): Promise<Task> {
+    return this.tasksService.update(+id, updateTaskDto);
+  }
+
+  
 }
