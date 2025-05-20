@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -12,19 +20,22 @@ export class TasksController {
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return this.tasksService.create(createTaskDto);
   }
-  
+
   @Get()
   findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id : string) : Promise<Task> {
+  findOne(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOne(+id);
   }
 
   @Put(':id')
-  update(@Param('id') id : string, @Body() updateTaskDto: UpdateTaskDto): Promise<Task> {
+  update(
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ): Promise<Task> {
     return this.tasksService.update(+id, updateTaskDto);
   }
 
@@ -32,5 +43,4 @@ export class TasksController {
   remove(@Param('id') id: string): Promise<Task> {
     return this.tasksService.remove(+id);
   }
-
 }

@@ -21,17 +21,17 @@ export class TasksService {
     return this.tasksRepository.find();
   }
 
-  async findOne(id: number) : Promise<Task> {
+  async findOne(id: number): Promise<Task> {
     const task = await this.tasksRepository.findOne({
-      where: { id }
+      where: { id },
     });
-    if (!task){
+    if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found`);
     }
     return task;
   }
 
-  async update (id: number, updateTaskDto: UpdateTaskDto) : Promise<Task> {
+  async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     const task = await this.findOne(id);
     Object.assign(task, updateTaskDto);
     return this.tasksRepository.save(task);
