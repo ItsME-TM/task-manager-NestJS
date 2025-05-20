@@ -26,27 +26,27 @@ const Login = () => {
         }
     };
     return (
-        <Container component="main" maxWidth="xs" sx={{  borderRadius: 2 }}>
-            <Paper elevation = {3} sx = {{ p : 4, mt : 8}}>
-                <Typography component = "h1" variant="h5" align = "center">
+        <Container component="main" maxWidth="xs" sx={{ borderRadius: 2 }}>
+            <Paper elevation={3} sx={{ p: 4, mt: 8 }}>
+                <Typography component="h1" variant="h5" align="center">
                     Task Manager Login
                 </Typography>
                 {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
                 <Formik
-                    initialValues={{ username: '', password: ''}}
+                    initialValues={{ username: '', password: '' }}
                     validationSchema={LoginSchema}
-                    onSubmit = {handleLogin}
+                    onSubmit={handleLogin}
                 >
-                    {({errors, touched, isSubmitting}) => (
+                    {({ errors, touched, isSubmitting }) => (
                         <Form>
-                            <Box sx = {{ mt : 2}}>
+                            <Box sx={{ mt: 2 }}>
                                 <Field
                                     as={TextField}
                                     fullWidth
-                                    id = "username"
-                                    name = "username"
-                                    label = "Username"
-                                    margin = "normal"
+                                    id="username"
+                                    name="username"
+                                    label="Username"
+                                    margin="normal"
                                     error={touched.username && Boolean(errors.username)}
                                     helperText={touched.username && errors.username}
                                 />
@@ -68,9 +68,17 @@ const Login = () => {
                                     color="primary"
                                     sx={{ mt: 3, mb: 2 }}
                                     disabled={isSubmitting}
-                                    >
+                                >
                                     Sign In
                                 </Button>
+                                <Typography
+                                    variant="body2"
+                                    align="center"
+                                    sx={{ mt: 2, cursor: 'pointer', color: 'primary.main', textDecoration: 'underline' }}
+                                    onClick={() => navigate('/register')}
+                                >
+                                    Don't have an account? Sign up here
+                                </Typography>
                             </Box>
                         </Form>
                     )}

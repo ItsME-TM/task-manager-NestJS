@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { CssBaseline, Container, Typography } from '@mui/material';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import Login from './components/auth/Login';
-
+import Register from './components/auth/Register';
 
 const Tasks = () => {
   return <Typography variant="h4">Tasks Page (Placeholder)</Typography>;
@@ -30,6 +30,7 @@ function AppContent() {
       <Container maxWidth="md">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/tasks"
             element={
