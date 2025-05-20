@@ -12,7 +12,8 @@ export class UsersService {
   ) {}
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.usersRepository.findOne({ where: { username } });
+    const user = await this.usersRepository.findOne({ where: { username } });
+    return user === null ? undefined : user;
   }
 
   async create(username: string, password: string): Promise<User> {
