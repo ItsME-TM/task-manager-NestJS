@@ -8,44 +8,34 @@ import Register from './components/auth/Register';
 import TaskList from './components/tasks/TaskList';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import './App.css';
 
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useContext(AuthContext);
-
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
+  if (loading) return <div>Loading...</div>;
+  if (!isAuthenticated) return <Navigate to="/login" />;
   return children;
 };
 
 function AppContent() {
   return (
-    <>
+    <div className="app-container">
       <CssBaseline />
       <Header />
-      <Container maxWidth="md">
+      <Container maxWidth="md" className="content">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/tasks"
-            element={
-              <ProtectedRoute>
-                <TaskList />
-              </ProtectedRoute>
-            }
+            element={<ProtectedRoute><TaskList /></ProtectedRoute>}
           />
           <Route path="/" element={<Navigate to="/tasks" />} />
         </Routes>
       </Container>
       <Footer />
-    </>
+    </div>
   );
 }
 

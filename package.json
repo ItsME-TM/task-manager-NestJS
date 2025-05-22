@@ -1,5 +1,25 @@
 {
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "prettier": "^3.5.3"
-  }
+  },
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "A **full-stack task management application** built with **NestJS** (backend), **React** (frontend), and **PostgreSQL** (database).   Easily sign up, log in, and manage your tasks securely with JWT-based authentication.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\" --names \"Backend,Frontend\" --prefix-colors \"blue,green\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItsME-TM/task-manager-NestJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ItsME-TM/task-manager-NestJS/issues"
+  },
+  "homepage": "https://github.com/ItsME-TM/task-manager-NestJS#readme"
 }
