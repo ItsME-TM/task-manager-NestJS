@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { CssBaseline, Container, Typography } from '@mui/material';
+import { CssBaseline, Container } from '@mui/material';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
