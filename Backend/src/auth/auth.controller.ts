@@ -9,4 +9,8 @@ export class AuthController {
   async login(@Body() body: { username: string; password: string }) {
     return this.authService.login(body.username, body.password);
   }
+  @Post('signup')
+  async signup(@Body() body: { username: string; password: string }) {
+    return this.authService.signup(body.username, body.password);
+  }
 }

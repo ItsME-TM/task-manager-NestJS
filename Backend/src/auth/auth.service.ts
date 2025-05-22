@@ -29,4 +29,8 @@ export class AuthService {
       access_token: this.jwtService.sign(payload), 
     };
   }
+
+  async signup(username: string, password: string) {
+    return this.usersService.create(username, password);
+  }
 }
