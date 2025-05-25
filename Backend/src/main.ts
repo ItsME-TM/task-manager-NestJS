@@ -17,7 +17,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({
-    origin: 'http://localhost:8000',
+    origin: 'https://task-manager-ashy-five.vercel.app',
     Credentials: true,
   })
   
