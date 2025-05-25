@@ -18,7 +18,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'https://task-manager-ashy-five.vercel.app',
-    Credentials: true,
+    credentials: true,
   })
   
   await app.listen(3000);
