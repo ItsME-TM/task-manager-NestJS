@@ -19,11 +19,14 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'https://task-manager-ashy-five.vercel.app',
-      'https://task-manager-chbltum9r-thushans-projects-fa88839a.vercel.app'
+      'https://task-manager-chbltum9r-thushans-projects-fa88839a.vercel.app',
+      'https://task-manager-git-master-thushans-projects-fa88839a.vercel.app', 
     ],
-    credentials: true,
-  })
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true, // Keep this for auth-related requests
+    allowedHeaders: 'Content-Type, Authorization', 
+  });
   
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000); 
 }
-void bootstrap();
+bootstrap(); 
