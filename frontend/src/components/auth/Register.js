@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, TextField, Typography, Container, Paper, Alert } from '@mui/material';
 import { AuthContext } from '../../contexts/AuthContext';
-import api from '../../services/api'; // Make sure this path is correct
+import api from '../../services/api'; 
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
@@ -37,7 +37,7 @@ const Register = () => {
 
       login(values.username, access_token);
       setError('');
-      navigate('/tasks');
+      navigate('/login');
     } catch (err) {
       const message =
         err.response?.data?.message ||
