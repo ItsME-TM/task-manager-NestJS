@@ -5,12 +5,18 @@ Easily sign up, log in, and manage your tasks securely with JWT-based authentica
 
 ---
 
+## 🌐 Live Demo
+
+Currently hosted at: [https://task-manager-ashy-five.vercel.app/](https://task-manager-ashy-five.vercel.app/)
+
+---
+
 ## 🚀 Features
 
 - **User Authentication:** Secure signup & login with JWT tokens.
 - **Task Management:**  
-    - Create, edit, delete, and toggle task completion.
-    - Filter tasks by status: _All_, _Completed_, _Pending_.
+     - Create, edit, delete, and toggle task completion.
+     - Filter tasks by status: _All_, _Completed_, _Pending_.
 - **Protected Routes:** Only authenticated users can manage tasks.
 - **Responsive UI:** Clean, modern design with Material-UI.
 - **API Documentation:** Explore backend API with Swagger UI.
@@ -113,10 +119,10 @@ npm start
 1. **Sign Up:** Register at `/register` with a username and password.
 2. **Log In:** Access `/login` to enter the task manager.
 3. **Manage Tasks:**
-     - View all tasks at `/tasks`
-     - Add new tasks with the floating **+** button
-     - Edit/delete tasks using icons on each card
-     - Filter tasks: _All_, _Completed_, _Pending_
+      - View all tasks at `/tasks`
+      - Add new tasks with the floating **+** button
+      - Edit/delete tasks using icons on each card
+      - Filter tasks: _All_, _Completed_, _Pending_
 4. **Logout:** Click the logout button in the header.
 
 > For API testing, use [Swagger](http://localhost:3000/api) or tools like Postman with JWT tokens.
@@ -155,11 +161,11 @@ To contribute:
 
 1. **Fork** the repository
 2. **Create a branch:**  
-     `git checkout -b feature/your-feature`
+      `git checkout -b feature/your-feature`
 3. **Commit your changes:**  
-     `git commit -m "Add your feature"`
+      `git commit -m "Add your feature"`
 4. **Push to GitHub:**  
-     `git push origin feature/your-feature`
+      `git push origin feature/your-feature`
 5. **Open a Pull Request**
 
 Please report bugs or suggest features via [GitHub Issues](https://github.com/ItsME-TM/task-manager-NestJS/issues).
