@@ -76,8 +76,9 @@ const TaskList = () => {
   };
 
   const filteredTasks = tasks.filter((task) => {
-    if (filter === 'completed') return task.completed;
-    if (filter === 'pending') return !task.completed;
+    const isCompleted = task.completed === true || task.completed === 'true';
+    if (filter === 'completed') return isCompleted;
+    if (filter === 'pending') return !isCompleted;
     return true;
   });
 
