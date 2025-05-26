@@ -70,10 +70,10 @@ PORT=3000
 > Replace `<username>` and `<password>` with your PostgreSQL credentials.  
 > Use a secure `JWT_SECRET` (e.g., a random string).
 
-Set up the PostgreSQL database:
+Run the backend and frontend same time :
 
-```sql
-CREATE DATABASE task_manager;
+```bash
+npm run start
 ```
 
 Run the backend server:
